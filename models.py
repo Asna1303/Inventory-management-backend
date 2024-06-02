@@ -11,3 +11,5 @@ class Products(Model):
     revenue=fields.DecimalField(max_digit=20,decimal_places=2,default=0.00)
     supplied_by=fields.ForeignKeyField('models.supplier',related_name="goods.supplier")
    
+class Supplier(Model):
+    
