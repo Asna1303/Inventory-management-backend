@@ -2,7 +2,7 @@ from tortoise.models import Model
 from tortoise import fields
 from tortoise.contrib.pydantic import pydantic_model_creator
 
-class Products(Model):
+class Product(Model):
     id=fields.IntField(pk=True)
     name=fields.CharField(max_length=30,nullable=False)
     quantity_in_stock=fields.IntField(default=0)
@@ -17,4 +17,8 @@ class Supplier(Model):
      company=fields.CharField(max_length=20)
      email=fields.CharField(max_length=100)
      phone=fields.CharField(max_length=15)
+
+#create pydantic models
+
+product_pydantic=pydantic_model_creator(Product,name="Product")
 
