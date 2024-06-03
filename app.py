@@ -19,6 +19,11 @@ async def get_all_supplier():
     response=await supplier_pydantic.from_queryset(Supplier.all())
     return {"status": "OK", "data": response}
 
+@app.get('/supplier/{supplier.id}')
+async def get_specific_supplier(supplier_id:int):
+    response=await supplier_pydantic.from_queryset(Supplier.get(id=supplier_id))
+    return {"status": "OK", "data": response}
+
 
 
 register_tortoise(
