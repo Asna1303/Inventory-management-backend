@@ -37,10 +37,15 @@ async def update_supplier(supplier_id:int,update_info:supplier_pydanticIn):
     response= await supplier_pydantic .from_tortoise_orm(supplier)
     return {"status": "OK", "data": response}
 
-@app.delete('/supplier/{supplier.id}')
-async def delete_supplier(supplier_id:int):
-    await Supplier.get(id=supplier_id).delete()
-    return {"status": "OK"}
+@app.delete('/supplier/{supplier_id}')
+async def delete_supplier(supplier_id: int):
+    supplier = await Supplier.filter(id=supplier_id).first()
+    if supplier:
+        await supplier.delete()
+        return {"status": "OK"}
+    else:
+        return {"status": "Error", "message": "Supplier not found"}
+
 
 
 
