@@ -25,3 +25,4 @@ product_pydanticIn=pydantic_model_creator(Product,name="ProductIn",exclude_reado
 
 
 supplier_pydantic=pydantic_model_creator(Supplier,name="Supplier")
+supplier_pydanticIn=pydantic_model_creator(Supplier,name="SupplierIn",exclude_readonly=True
