@@ -25,6 +25,19 @@ async def get_specific_supplier(supplier_id:int):
     return {"status": "OK", "data": response}
 
 
+@app.put('/supplier/{supplier.id}')
+async def update_supplier(supplier_id:int,update_info:supplier_pydanticIn):
+    supplier=await Supplier.get(id=supplier_id)
+    update_info=update_info.dict(exclude_unset=True)
+    supplier.name=update_info.name
+    supplier.company=update_info.company
+    supplier.phone=update_info.phone
+    supplier.email=update_info.email
+
+
+
+
+
 
 register_tortoise(
     app,
