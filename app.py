@@ -33,6 +33,9 @@ async def update_supplier(supplier_id:int,update_info:supplier_pydanticIn):
     supplier.company=update_info.company
     supplier.phone=update_info.phone
     supplier.email=update_info.email
+    await supplier.save()
+    response=supplier_pydantic .from_tortoise_orm(supplier)
+    return {"status": "OK", "data": response}
 
 
 
