@@ -9,10 +9,17 @@ def index():
     return {"Msg": "go to /docs for the API documentation"}
 
 @app.post('/supplier')
-async def add_supplier(supplier_info: supplier_pydanticIn):
+async def add_supplier(supplier_info:supplier_pydanticIn):
     supplier_obj = await Supplier.create(**supplier_info.dict(exclude_unset=True))
     response = await supplier_pydantic.from_tortoise_orm(supplier_obj)
     return {"status": "OK", "data": response}
+
+@app.get('/supplier')
+async def get_all_supplier():
+    response=await supplier_pydantic.from_queryset(Supplier.all())
+    return {"status": "OK", "data": response}
+
+
 
 register_tortoise(
     app,
