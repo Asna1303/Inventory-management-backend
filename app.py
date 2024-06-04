@@ -78,6 +78,10 @@ async def update_product(id:int,update_info:product_pydantic):
     response=await product_pydantic.from_tortoise_orm(product)
     return {"status": "OK", "data": response}
     
+@app.delete('/product/{id}')
+async def delete_product(id:int):
+    await Product.filter(id=id).delete()
+    return {"status": "OK"}
 
 
 
