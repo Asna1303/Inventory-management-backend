@@ -72,6 +72,8 @@ async def update_product(id:int,update_info:product_pydantic):
     product.name=update_info['name']
     product.quantity_in_stock=update_info['quantity_in_stock']
     product.revenue+=update_info['quantity_sold']*update_info['unit_price']
+    product.quantity_sold+=update_info['quantity_sold']
+    product.unit_price+=update_info['unit_price']
     
 
 
