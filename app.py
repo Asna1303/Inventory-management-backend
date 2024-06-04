@@ -49,7 +49,7 @@ async def delete_supplier(supplier_id: int):
 @app.post('/product/{supplier_id}')  
 async def add_product(supplier_id:int, products_details: product_pydanticIn):
     supplier=await Supplier.get(id=supplier_id)
-    product= products_details.dict(exclude_unset=True)
+    products= products_details.dict(exclude_unset=True)
     products_details['revenue']+=products_details['quantity_sold']*products_details['unit_price']
     product_obj=await Product.create(**products_details,supplied_by=supplier)
     response=await product_pydantic.from_tortoise_orm(product_obj)
