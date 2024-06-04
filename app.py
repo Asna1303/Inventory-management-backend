@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
-from models import supplier_pydantic, supplier_pydanticIn, Supplier  # Corrected import statement
+from models import (supplier_pydantic, supplier_pydanticIn, Supplier, product_pydantic,product_pydanticIn,Product ) # Corrected import statement
 
 app = FastAPI()
 
