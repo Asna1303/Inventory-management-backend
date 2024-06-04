@@ -70,7 +70,8 @@ async def update_product(id:int,update_info:product_pydantic):
     product=await Product.get(id=id)
     update_info=update_info.dict(exclude_unset=True)
     product.name=update_info['name']
-    product.name=update_info['name']
+    product.quantity_in_stock=update_info['quantity_in_stock']
+    
     
 
 
