@@ -56,6 +56,10 @@ async def add_product(supplier_id:int, products_details: product_pydanticIn):
     return {"status": "OK", "data": response}
 
 @app.get('/product')
+async def all_products():
+    response=await product_pydantic.from_queryset(Product.all())
+    return {"status": "OK", "data": response}
+
 
 
 
