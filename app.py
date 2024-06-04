@@ -46,7 +46,7 @@ async def delete_supplier(supplier_id: int):
     else:
         return {"status": "Error", "message": "Supplier not found"}
     
-@app.post('/products/{supplier_id}')  
+@app.post('/product/{supplier_id}')  
 async def add_product(supplier_id:int, products_details: product_pydanticIn):
     supplier=await Supplier.get(id=supplier_id)
     product= products_details.dict(exclude_unset=True)
@@ -65,6 +65,13 @@ async def specific_product(id:int):
     response=await product_pydantic.from_queryset_single(Product.get(id=id))
     return {"status": "OK", "data": response}
 
+@app.put('/product/{id}')
+async def update_product(id:int,update_info:product_pydantic):
+    product=await Product.get(id=id)
+    update_info=update_info.dict(exclude_unset=True)
+    product.name=update_info['name']
+    product.name=update_info['name']
+    
 
 
 
