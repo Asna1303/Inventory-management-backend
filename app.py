@@ -60,6 +60,10 @@ async def all_products():
     response=await product_pydantic.from_queryset(Product.all())
     return {"status": "OK", "data": response}
 
+@app.get('/product/{id}')
+async def specific_product(id:int):
+    response=await product_pydantic.from_queryset_single(Product.get(id=id))
+    return {"status": "OK", "data": response}
 
 
 
