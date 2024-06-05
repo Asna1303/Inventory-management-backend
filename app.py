@@ -116,7 +116,8 @@ app = FastAPI()
 
 
 html = """
-<p>Thanks for using Fastapi-mail</p> 
+<h5>john business ltd</h5> 
+<br>
 """
 
 
