@@ -7,7 +7,8 @@ from fastapi import BackgroundTasks, FastAPI
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
 from pydantic import BaseModel, EmailStr
 from starlette.responses import JSONResponse
-
+#dotenv
+from dotenv import dotenv_values
 app = FastAPI()
 
 @app.get('/')
