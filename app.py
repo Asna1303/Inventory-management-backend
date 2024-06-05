@@ -102,7 +102,7 @@ class EmailSchema(BaseModel):
 class EmailContent(BaseModel):
     message:str
     subject:str
-      
+
 
 
 conf = ConnectionConfig(
@@ -117,13 +117,20 @@ conf = ConnectionConfig(
     VALIDATE_CERTS = True
 )
 
-app = FastAPI()
+@app.post('/email/{product}')
+async def send_email(product_id :int,content:EmailContent):
 
 
-html = """
-<h5>john business ltd</h5> 
-<br>
-"""
+    html = f"""
+    <h5>john business ltd</h5> 
+    <br>
+    <p>{content.subject}</p>
+    <br>
+    <p>{content.message}</p>
+    <br>
+    <h6>Best Regards</h6>
+    <h6>John </h6>
+    """
 
 
 @app.post("/email")
