@@ -9,7 +9,13 @@ from pydantic import BaseModel, EmailStr
 from starlette.responses import JSONResponse
 #dotenv
 from dotenv import dotenv_values
+#credentials
+credentials=dotenv_values(".env")
+
+
+
 app = FastAPI()
+
 
 @app.get('/')
 def index():
