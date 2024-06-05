@@ -99,6 +99,11 @@ async def delete_product(id:int):
 class EmailSchema(BaseModel):
     email: List[EmailStr]
 
+class EmailContent(BaseModel):
+    message:str
+    subject:str
+      
+
 
 conf = ConnectionConfig(
     MAIL_USERNAME =credentials['EMAIL'],
