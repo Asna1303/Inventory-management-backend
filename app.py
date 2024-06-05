@@ -89,7 +89,32 @@ async def delete_product(id:int):
     await Product.filter(id=id).delete()
     return {"status": "OK"}
 
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
 
+
+conf = ConnectionConfig(
+    MAIL_USERNAME ="username",
+    MAIL_PASSWORD = "**********",
+    MAIL_FROM = "test@email.com",
+    MAIL_PORT = 465,
+    MAIL_SERVER = "mail server",
+    MAIL_STARTTLS = False,
+    MAIL_SSL_TLS = True,
+    USE_CREDENTIALS = True,
+    VALIDATE_CERTS = True
+)
+
+app = FastAPI()
+
+
+html = """
+<p>Thanks for using Fastapi-mail</p> 
+"""
+
+
+@app.post("/email")
+async def simple_send(email: EmailSchema) -> JSONResponse:
 
 register_tortoise(
     app,
