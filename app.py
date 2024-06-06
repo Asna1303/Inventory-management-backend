@@ -119,7 +119,8 @@ conf = ConnectionConfig(
 
 @app.post('/email/{product}')
 async def send_email(product_id :int,content:EmailContent):
-
+    product=await Product.get(id=product_id)
+    supplier=await product.supplied_by
 
     html = f"""
     <h5>john business ltd</h5> 
