@@ -138,7 +138,7 @@ async def send_email(product_id :int,content:EmailContent):
 
     fm = FastMail(conf)
     await fm.send_message(message)
-    return JSONResponse(status_code=200, content={"message": "email has been sent"}) 
+    return {"status": "OK"}
 
    
 
