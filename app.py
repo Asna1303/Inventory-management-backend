@@ -124,26 +124,22 @@ async def send_email(product_id :int,content:EmailContent):
     html = f"""
     <h5>john business ltd</h5> 
     <br>
-    <p>{content.subject}</p>
-    <br>
     <p>{content.message}</p>
     <br>
     <h6>Best Regards</h6>
     <h6>John </h6>
     """
-
-
-@app.post("/email")
-async def simple_send(email: EmailSchema) -> JSONResponse:
     message = MessageSchema(
-        subject="Fastapi-Mail module",
-        recipients=email.dict().get("email"),
-        body=html,
-        subtype=MessageType.html)
+    subject=content.subject,
+    recipients=email.dict().get("email"),
+    body=html,
+    subtype=MessageType.html)
 
     fm = FastMail(conf)
     await fm.send_message(message)
     return JSONResponse(status_code=200, content={"message": "email has been sent"}) 
+
+   
 
 register_tortoise(
     app,
