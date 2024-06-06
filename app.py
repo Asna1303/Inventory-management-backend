@@ -121,7 +121,7 @@ conf = ConnectionConfig(
 async def send_email(product_id :int,content:EmailContent):
     product=await Product.get(id=product_id)
     supplier=await product.supplied_by
-
+    supplier_email=[supplier_email]
     html = f"""
     <h5>john business ltd</h5> 
     <br>
@@ -132,7 +132,7 @@ async def send_email(product_id :int,content:EmailContent):
     """
     message = MessageSchema(
     subject=content.subject,
-    recipients=email.dict().get("email"),
+    recipients=supplier_email,
     body=html,
     subtype=MessageType.html)
 
